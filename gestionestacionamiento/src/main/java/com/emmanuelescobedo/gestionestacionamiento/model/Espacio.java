@@ -1,9 +1,8 @@
 package com.emmanuelescobedo.gestionestacionamiento.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Espacio {
@@ -14,4 +13,10 @@ public class Espacio {
     private String numero;
     private Enum tipo;
     private boolean disponible;
+    @ManyToOne
+    @JoinColumn(name = "estacionamiento_id")
+    private Estacionamiento estacionamiento;
+
+    @OneToMany(mappedBy = "espacio")
+    private List<EntradaSalida> entradasSalidas;
 }

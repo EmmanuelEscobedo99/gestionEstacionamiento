@@ -1,11 +1,9 @@
 package com.emmanuelescobedo.gestionestacionamiento.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -20,4 +18,6 @@ public class Usuario {
     private String telefono;
     private Enum rol;
     private LocalDateTime fechaRegistro;
+    @OneToMany(mappedBy = "usuario")
+    private List<Vehiculo> vehiculos;
 }

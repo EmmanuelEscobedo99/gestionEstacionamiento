@@ -1,9 +1,8 @@
 package com.emmanuelescobedo.gestionestacionamiento.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Vehiculo {
@@ -16,4 +15,10 @@ public class Vehiculo {
     private String modelo;
     private String color;
     private String tipo;
+    @ManyToOne
+    @JoinColumn(name="usuario_id")
+    private Usuario usuario;
+
+    @OneToMany(mappedBy = "vehiculo")
+    private List<EntradaSalida> entradasSalidas;
 }
