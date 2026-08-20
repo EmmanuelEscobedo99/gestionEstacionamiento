@@ -19,4 +19,82 @@ public class Estacionamiento {
     private boolean activo;
     @OneToMany(mappedBy = "estacionamiento")
     private List<Espacio> espacios;
+
+    public Estacionamiento() {
+    }
+
+    public Estacionamiento(Long codeEstacionamiento, List<Espacio> espacios, boolean activo, BigDecimal tarifaHora, Integer capacidadTotal, String ciudad, String direccion, String nombre) {
+        this.codeEstacionamiento = codeEstacionamiento;
+        this.espacios = espacios;
+        this.activo = activo;
+        this.tarifaHora = tarifaHora;
+        this.capacidadTotal = capacidadTotal;
+        this.ciudad = ciudad;
+        this.direccion = direccion;
+        this.nombre = nombre;
+    }
+
+    public Long getCodeEstacionamiento() {
+        return codeEstacionamiento;
+    }
+
+    public void setCodeEstacionamiento(Long codeEstacionamiento) {
+        this.codeEstacionamiento = codeEstacionamiento;
+    }
+
+    public List<Espacio> getEspacios() {
+        return espacios;
+    }
+
+    public void setEspacios(List<Espacio> espacios) {
+        this.espacios = espacios;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public BigDecimal getTarifaHora() {
+        return tarifaHora;
+    }
+
+    public void setTarifaHora(BigDecimal tarifaHora) {
+        this.tarifaHora = tarifaHora;
+    }
+
+    public Integer getCapacidadTotal() {
+        return capacidadTotal;
+    }
+
+    public void setCapacidadTotal(Integer capacidadTotal) {
+        this.capacidadTotal = capacidadTotal;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }
