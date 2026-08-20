@@ -43,11 +43,28 @@ public class UsuarioService implements IUsuarioService{
         if(usuarioEditar == null) {
             return null;
         }
+
+        usuarioEditar.setNombre(usuario.getNombre());
+        usuarioEditar.setApellido(usuario.getApellido());
+        usuarioEditar.setEmail(usuario.getEmail());
+        usuarioEditar.setPassword(usuario.getPassword());
+        usuarioEditar.setTelefono(usuario.getTelefono());
+        usuarioEditar.setRol(usuario.getRol());
+        usuarioEditar.setFechaRegistro(usuario.getFechaRegistro());
+
         return usuaRepo.save(usuarioEditar);
     }
 
     @Override
     public boolean eliminarUsuario(Long codeUsuario) {
-        return false;
+
+        Usuario usuarioEliminar = buscarUsuario(codeUsuario);
+
+        if(usuarioEliminar == null) {
+            return false;
+        }
+
+        usuaRepo.delete(usuarioEliminar);
+        return true;
     }
 }
