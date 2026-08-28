@@ -19,5 +19,5 @@ public interface IEntradaSalidaService {
     EntradaSalida editarEntradaSalida(Long codeEntradaSalida, EntradaSalida entradaSalida);
 
     //DELETE
-    EntradaSalida eliminarEntradaSalida(Long codeEntradaSalida);
+    boolean eliminarEntradaSalida(Long codeEntradaSalida);
 }
