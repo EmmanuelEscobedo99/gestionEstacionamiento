@@ -9,7 +9,7 @@ public interface IEstacionamientoService {
     //METODOS CRUD
 
     //READ
-    public List<Estacionamiento> traerEstacionamientos();
+    List<Estacionamiento> traerEstacionamientos();
     Estacionamiento buscarEstacionamiento(Long codeEstacionamiento);
 
     //CREATE

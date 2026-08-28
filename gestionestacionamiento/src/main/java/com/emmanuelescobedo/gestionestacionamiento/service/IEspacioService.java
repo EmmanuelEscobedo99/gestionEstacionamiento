@@ -10,7 +10,7 @@ public interface IEspacioService {
     //METODOS CRUD
 
     //READ
-    public List<Espacio> traerEspacios();
+    List<Espacio> traerEspacios();
     Espacio buscarEspacio(Long codeEspacio);
 
     //CREATE
