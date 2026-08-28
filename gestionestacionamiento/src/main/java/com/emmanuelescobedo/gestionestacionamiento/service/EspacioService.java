@@ -2,9 +2,11 @@ package com.emmanuelescobedo.gestionestacionamiento.service;
 
 import com.emmanuelescobedo.gestionestacionamiento.model.Espacio;
 import com.emmanuelescobedo.gestionestacionamiento.repository.IEspacioRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class EspacioService implements IEspacioService{
 
     private final IEspacioRepository espaRepo;
