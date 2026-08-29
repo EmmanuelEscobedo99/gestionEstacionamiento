@@ -1,5 +1,6 @@
 package com.emmanuelescobedo.gestionestacionamiento.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -15,23 +16,27 @@ public class EntradaSalida {
     private LocalDateTime fechaSalida;
     private BigDecimal horasConsumidas;
     private BigDecimal totalPagar;
-    private Enum estado;
+    @Enumerated(EnumType.STRING)
+    private EstadoEntrada estado;
 
     @ManyToOne
     @JoinColumn(name = "vehiculo_id")
+    @JsonIgnoreProperties("entradasSalidas")
     private Vehiculo vehiculo;
 
     @ManyToOne
     @JoinColumn(name = "espacio_id")
+    @JsonIgnoreProperties("entradasSalidas")
     private Espacio espacio;
 
     @OneToOne(mappedBy = "entradaSalida")
+    @JsonIgnoreProperties("entradaSalida")
     private Pago pago;
 
     public EntradaSalida() {
     }
 
-    public EntradaSalida(Long codeEntradaSalida, Pago pago, Espacio espacio, Vehiculo vehiculo, Enum estado, BigDecimal totalPagar, BigDecimal horasConsumidas, LocalDateTime fechaSalida, LocalDateTime fechaEntrada) {
+    public EntradaSalida(Long codeEntradaSalida, Pago pago, Espacio espacio, Vehiculo vehiculo, EstadoEntrada estado, BigDecimal totalPagar, BigDecimal horasConsumidas, LocalDateTime fechaSalida, LocalDateTime fechaEntrada) {
         this.codeEntradaSalida = codeEntradaSalida;
         this.pago = pago;
         this.espacio = espacio;
@@ -75,11 +80,11 @@ public class EntradaSalida {
         this.vehiculo = vehiculo;
     }
 
-    public Enum getEstado() {
+    public EstadoEntrada getEstado() {
         return estado;
     }
 
-    public void setEstado(Enum estado) {
+    public void setEstado(EstadoEntrada estado) {
         this.estado = estado;
     }
 

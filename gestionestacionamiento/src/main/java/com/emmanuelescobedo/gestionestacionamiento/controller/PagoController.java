@@ -69,7 +69,6 @@ public class PagoController {
                     .body("No fue posible encontrar o no existe el Pago.");
         }
 
-        pagoServ.eliminarPago(codePago);
         return ResponseEntity.ok("El Pago ha sido eliminado.");
     }
 }

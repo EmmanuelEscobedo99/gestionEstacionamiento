@@ -49,11 +49,11 @@ public class UsuarioController {
         }
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(usuario);
+                .body(usuarioCreado);
     }
 
     //UPDATE
-    @PutMapping("/{userCode}")
+    @PutMapping("/{codeUsuario}")
     public ResponseEntity<?> editarUsuario(@PathVariable Long codeUsuario, @RequestBody Usuario usuario) {
 
         Usuario usuarioEditado = usuaServ.editarUsuario(codeUsuario, usuario);
@@ -77,7 +77,6 @@ public class UsuarioController {
                     .body("No fue posible eliminar el usuario o no fue encontrado.");
         }
 
-        usuaServ.eliminarUsuario(codeUsuario);
         return ResponseEntity.ok("El usuario ha sido eliminado!");
     }
     

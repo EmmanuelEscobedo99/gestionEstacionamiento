@@ -30,7 +30,7 @@ public class EstacionamientoController {
         Estacionamiento estacionamientoBuscar = estaServ.buscarEstacionamiento(codeEstacionamiento);
 
         if(estacionamientoBuscar == null) {
-            ResponseEntity.status(HttpStatus.NOT_FOUND)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("No se encuentra el estacionamiento con id: " + codeEstacionamiento);
         }
 
@@ -76,7 +76,6 @@ public class EstacionamientoController {
                     .body("No fue posible eliminar el estacionamiento!");
         }
 
-        estaServ.eliminarEstacionamiento(codeEstacionamiento);
         return ResponseEntity.ok("El estacionamiento ha sido eliminado.");
     }
 

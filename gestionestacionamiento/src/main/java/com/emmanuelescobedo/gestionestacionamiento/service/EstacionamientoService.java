@@ -39,7 +39,7 @@ public class EstacionamientoService implements IEstacionamientoService{
     public Estacionamiento editarEstacionamiento(Long codeEstacionamiento, Estacionamiento estacionamiento) {
         Estacionamiento estacionamientoEditar = buscarEstacionamiento(codeEstacionamiento);
 
-        if(estacionamientoEditar == null) {
+        if(estacionamientoEditar == null || estacionamiento == null) {
             return null;
         }
 
@@ -50,7 +50,7 @@ public class EstacionamientoService implements IEstacionamientoService{
         estacionamientoEditar.setTarifaHora(estacionamiento.getTarifaHora());
         estacionamientoEditar.setActivo(estacionamiento.isActivo());
 
-        return estaRepo.save(estacionamiento);
+        return estaRepo.save(estacionamientoEditar);
     }
 
     @Override

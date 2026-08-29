@@ -38,7 +38,7 @@ public class EntradaSalidaService implements IEntradaSalidaService{
     public EntradaSalida editarEntradaSalida(Long codeEntradaSalida, EntradaSalida entradaSalida) {
         EntradaSalida entradaSalidaEditar = buscarEntradaSalida(codeEntradaSalida);
 
-        if (entradaSalida == null){
+        if (entradaSalidaEditar == null || entradaSalida == null){
             return null;
         }
 

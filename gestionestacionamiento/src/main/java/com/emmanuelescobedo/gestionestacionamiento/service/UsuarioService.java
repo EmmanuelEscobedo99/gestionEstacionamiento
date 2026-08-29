@@ -40,7 +40,7 @@ public class UsuarioService implements IUsuarioService{
 
         Usuario usuarioEditar = buscarUsuario(codeUsuario);
 
-        if(usuarioEditar == null) {
+        if(usuarioEditar == null || usuario == null) {
             return null;
         }
 

@@ -1,5 +1,6 @@
 package com.emmanuelescobedo.gestionestacionamiento.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -16,15 +17,17 @@ public class Usuario {
     private String email;
     private String password;
     private String telefono;
-    private Enum rol;
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
     private LocalDateTime fechaRegistro;
     @OneToMany(mappedBy = "usuario")
+    @JsonIgnoreProperties("usuario")
     private List<Vehiculo> vehiculos;
 
     public Usuario() {
     }
 
-    public Usuario(List<Vehiculo> vehiculos, LocalDateTime fechaRegistro, Enum rol, String telefono, String password, String email, String apellido, String nombre, Long codeUsuario) {
+    public Usuario(List<Vehiculo> vehiculos, LocalDateTime fechaRegistro, Rol rol, String telefono, String password, String email, String apellido, String nombre, Long codeUsuario) {
         this.vehiculos = vehiculos;
         this.fechaRegistro = fechaRegistro;
         this.rol = rol;
@@ -52,11 +55,11 @@ public class Usuario {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Enum getRol() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRol(Enum rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 

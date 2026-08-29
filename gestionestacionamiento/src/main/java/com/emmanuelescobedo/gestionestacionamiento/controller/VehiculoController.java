@@ -70,7 +70,6 @@ public class VehiculoController {
                     .body("No es posible eliminar el vehiculo o no existe.");
         }
 
-        vehiServ.eliminarVehiculo(codeVehiculo);
         return ResponseEntity.ok("El vehiculo ha sido eliminado.");
     }
 }

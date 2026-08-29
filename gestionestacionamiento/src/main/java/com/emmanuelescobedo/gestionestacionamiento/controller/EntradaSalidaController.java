@@ -73,7 +73,6 @@ public class EntradaSalidaController {
                     .body("No fue posible encontrar o no existe EntradaSalida deseada.");
         }
 
-        entrServ.eliminarEntradaSalida(codeEntradaSalida);
         return ResponseEntity.ok("La EntradaSalida ha sido eliminada.");
     }
 }

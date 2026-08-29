@@ -1,5 +1,6 @@
 package com.emmanuelescobedo.gestionestacionamiento.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -17,9 +18,11 @@ public class Vehiculo {
     private String tipo;
     @ManyToOne
     @JoinColumn(name="usuario_id")
+    @JsonIgnoreProperties("vehiculos")
     private Usuario usuario;
 
     @OneToMany(mappedBy = "vehiculo")
+    @JsonIgnoreProperties("vehiculo")
     private List<EntradaSalida> entradasSalidas;
 
     public Vehiculo() {

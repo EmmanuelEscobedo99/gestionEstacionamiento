@@ -1,5 +1,6 @@
 package com.emmanuelescobedo.gestionestacionamiento.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -11,19 +12,23 @@ public class Espacio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codeEspacio;
     private String numero;
-    private Enum tipo;
+    @Enumerated(EnumType.STRING)
+    private TipoEspacio tipo;
     private boolean disponible;
+
     @ManyToOne
     @JoinColumn(name = "estacionamiento_id")
+    @JsonIgnoreProperties("espacios")
     private Estacionamiento estacionamiento;
 
     @OneToMany(mappedBy = "espacio")
+    @JsonIgnoreProperties("espacio")
     private List<EntradaSalida> entradasSalidas;
 
     public Espacio() {
     }
 
-    public Espacio(Long codeEspacio, List<EntradaSalida> entradasSalidas, Estacionamiento estacionamiento, boolean disponible, Enum tipo, String numero) {
+    public Espacio(Long codeEspacio, List<EntradaSalida> entradasSalidas, Estacionamiento estacionamiento, boolean disponible, TipoEspacio tipo, String numero) {
         this.codeEspacio = codeEspacio;
         this.entradasSalidas = entradasSalidas;
         this.estacionamiento = estacionamiento;
@@ -64,11 +69,11 @@ public class Espacio {
         this.disponible = disponible;
     }
 
-    public Enum getTipo() {
+    public TipoEspacio getTipo() {
         return tipo;
     }
 
-    public void setTipo(Enum tipo) {
+    public void setTipo(TipoEspacio tipo) {
         this.tipo = tipo;
     }
 

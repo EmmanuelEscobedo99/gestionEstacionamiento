@@ -2,9 +2,11 @@ package com.emmanuelescobedo.gestionestacionamiento.service;
 
 import com.emmanuelescobedo.gestionestacionamiento.model.Vehiculo;
 import com.emmanuelescobedo.gestionestacionamiento.repository.IVehiculoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class VehiculoService implements IVehiculoService{
 
     private final IVehiculoRepository vehiRepo;
@@ -36,7 +38,7 @@ public class VehiculoService implements IVehiculoService{
     public Vehiculo editarVehiculo(Long codeVehiculo, Vehiculo vehiculo) {
         Vehiculo vehiculoEditar = buscarVehiculos(codeVehiculo);
 
-        if (vehiculoEditar == null){
+        if (vehiculoEditar == null || vehiculo == null){
             return null;
         }
 
@@ -45,6 +47,9 @@ public class VehiculoService implements IVehiculoService{
         vehiculoEditar.setMarca(vehiculo.getMarca());
         vehiculoEditar.setModelo(vehiculo.getModelo());
         vehiculoEditar.setTipo(vehiculo.getTipo());
+        if (vehiculo.getUsuario() != null) {
+            vehiculoEditar.setUsuario(vehiculo.getUsuario());
+        }
 
         return vehiRepo.save(vehiculoEditar);
     }

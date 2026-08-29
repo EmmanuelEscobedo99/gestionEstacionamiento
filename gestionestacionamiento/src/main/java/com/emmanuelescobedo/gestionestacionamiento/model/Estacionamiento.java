@@ -1,5 +1,6 @@
 package com.emmanuelescobedo.gestionestacionamiento.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -18,6 +19,7 @@ public class Estacionamiento {
     private BigDecimal tarifaHora;
     private boolean activo;
     @OneToMany(mappedBy = "estacionamiento")
+    @JsonIgnoreProperties("estacionamiento")
     private List<Espacio> espacios;
 
     public Estacionamiento() {

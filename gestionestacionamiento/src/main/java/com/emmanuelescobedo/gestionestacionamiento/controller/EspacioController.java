@@ -71,7 +71,6 @@ public class EspacioController {
                     .body("No se puede eliminar el espacio.");
         }
 
-        espaServ.eliminarEspacio(codeEspacio);
         return ResponseEntity.ok("El espacio ha sido eliminado");
     }
 }

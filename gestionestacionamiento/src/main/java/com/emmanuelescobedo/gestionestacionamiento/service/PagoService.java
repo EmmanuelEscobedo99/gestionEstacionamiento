@@ -38,13 +38,16 @@ public class PagoService implements IPagoService{
     public Pago editarPago(Long codePago, Pago pago) {
         Pago pagoEditar = buscarPago(codePago);
 
-        if (pagoEditar == null){
+        if (pagoEditar == null || pago == null){
             return null;
         }
 
         pagoEditar.setMonto(pago.getMonto());
         pagoEditar.setFechaPago(pago.getFechaPago());
         pagoEditar.setMetodoPago(pago.getMetodoPago());
+        if (pago.getEntradaSalida() != null) {
+            pagoEditar.setEntradaSalida(pago.getEntradaSalida());
+        }
 
         return pagoRepo.save(pagoEditar);
     }

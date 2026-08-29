@@ -40,13 +40,16 @@ public class EspacioService implements IEspacioService{
 
         Espacio espacioEditar = buscarEspacio(codeEspacio);
 
-        if(espacioEditar == null) {
+        if(espacioEditar == null || espacio == null) {
             return null;
         }
 
         espacioEditar.setNumero(espacio.getNumero());
         espacioEditar.setTipo(espacio.getTipo());
         espacioEditar.setDisponible(espacio.isDisponible());
+        if(espacio.getEstacionamiento() != null) {
+            espacioEditar.setEstacionamiento(espacio.getEstacionamiento());
+        }
 
         return espaRepo.save(espacioEditar);
     }
