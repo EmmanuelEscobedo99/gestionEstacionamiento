@@ -1,7 +1,9 @@
 package com.emmanuelescobedo.gestionestacionamiento.service;
 
 import com.emmanuelescobedo.gestionestacionamiento.model.EntradaSalida;
+import com.emmanuelescobedo.gestionestacionamiento.model.Espacio;
 import com.emmanuelescobedo.gestionestacionamiento.repository.IEntradaSalidaRepository;
+import com.emmanuelescobedo.gestionestacionamiento.repository.IEspacioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +12,26 @@ import java.util.List;
 public class EntradaSalidaService implements IEntradaSalidaService{
 
     private final IEntradaSalidaRepository entrRepo;
+    private final IEspacioRepository espaRepo;
 
-    public EntradaSalidaService(IEntradaSalidaRepository entrRepo) {
+    public EntradaSalidaService(IEntradaSalidaRepository entrRepo, IEspacioRepository espaRepo) {
         this.entrRepo = entrRepo;
+        this.espaRepo = espaRepo;
+    }
+
+    private void sincronizarEspacio(EntradaSalida entradaSalida) {
+        if (entradaSalida.getEspacio() == null || entradaSalida.getEspacio().getCodeEspacio() == null) {
+            return;
+        }
+
+        Espacio espacio = espaRepo.findById(entradaSalida.getEspacio().getCodeEspacio()).orElse(null);
+        if (espacio == null) {
+            return;
+        }
+
+        boolean libre = entradaSalida.getFechaSalida() != null;
+        espacio.setDisponible(libre);
+        espaRepo.save(espacio);
     }
 
     @Override
@@ -31,7 +50,10 @@ public class EntradaSalidaService implements IEntradaSalidaService{
             return null;
         }
 
-        return entrRepo.save(entradaSalida);
+        EntradaSalida guardada = entrRepo.save(entradaSalida);
+        sincronizarEspacio(entradaSalida);
+
+        return guardada;
     }
 
     @Override
@@ -51,7 +73,10 @@ public class EntradaSalidaService implements IEntradaSalidaService{
         entradaSalidaEditar.setFechaSalida(entradaSalida.getFechaSalida());
         entradaSalidaEditar.setFechaEntrada(entradaSalida.getFechaEntrada());
 
-        return entrRepo.save(entradaSalidaEditar);
+        EntradaSalida guardada = entrRepo.save(entradaSalidaEditar);
+        sincronizarEspacio(entradaSalidaEditar);
+
+        return guardada;
     }
 
     @Override
