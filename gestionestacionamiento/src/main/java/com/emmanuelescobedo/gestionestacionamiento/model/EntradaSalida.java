@@ -36,18 +36,6 @@ public class EntradaSalida {
     public EntradaSalida() {
     }
 
-    public EntradaSalida(Long codeEntradaSalida, Pago pago, Espacio espacio, Vehiculo vehiculo, EstadoEntrada estado, BigDecimal totalPagar, BigDecimal horasConsumidas, LocalDateTime fechaSalida, LocalDateTime fechaEntrada) {
-        this.codeEntradaSalida = codeEntradaSalida;
-        this.pago = pago;
-        this.espacio = espacio;
-        this.vehiculo = vehiculo;
-        this.estado = estado;
-        this.totalPagar = totalPagar;
-        this.horasConsumidas = horasConsumidas;
-        this.fechaSalida = fechaSalida;
-        this.fechaEntrada = fechaEntrada;
-    }
-
     public Long getCodeEntradaSalida() {
         return codeEntradaSalida;
     }

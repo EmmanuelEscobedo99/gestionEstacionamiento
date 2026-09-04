@@ -25,17 +25,6 @@ public class Estacionamiento {
     public Estacionamiento() {
     }
 
-    public Estacionamiento(Long codeEstacionamiento, List<Espacio> espacios, boolean activo, BigDecimal tarifaHora, Integer capacidadTotal, String ciudad, String direccion, String nombre) {
-        this.codeEstacionamiento = codeEstacionamiento;
-        this.espacios = espacios;
-        this.activo = activo;
-        this.tarifaHora = tarifaHora;
-        this.capacidadTotal = capacidadTotal;
-        this.ciudad = ciudad;
-        this.direccion = direccion;
-        this.nombre = nombre;
-    }
-
     public Long getCodeEstacionamiento() {
         return codeEstacionamiento;
     }

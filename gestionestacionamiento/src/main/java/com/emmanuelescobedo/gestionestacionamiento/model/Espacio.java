@@ -28,15 +28,6 @@ public class Espacio {
     public Espacio() {
     }
 
-    public Espacio(Long codeEspacio, List<EntradaSalida> entradasSalidas, Estacionamiento estacionamiento, boolean disponible, TipoEspacio tipo, String numero) {
-        this.codeEspacio = codeEspacio;
-        this.entradasSalidas = entradasSalidas;
-        this.estacionamiento = estacionamiento;
-        this.disponible = disponible;
-        this.tipo = tipo;
-        this.numero = numero;
-    }
-
     public Long getCodeEspacio() {
         return codeEspacio;
     }

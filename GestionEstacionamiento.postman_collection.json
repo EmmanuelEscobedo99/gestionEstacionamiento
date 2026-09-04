@@ -1,0 +1,568 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+		"name": "Gestion Estacionamiento API",
+		"description": "Colección completa de endpoints para probar la API REST de Gestión de Estacionamiento en Spring Boot.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Usuarios",
+			"item": [
+				{
+					"name": "Crear Usuario (POST)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Juan\",\n    \"apellido\": \"Perez\",\n    \"email\": \"juan.perez@example.com\",\n    \"password\": \"123456\",\n    \"telefono\": \"5551234567\",\n    \"rol\": \"ADMIN\",\n    \"fechaRegistro\": \"2026-08-28T10:00:00\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "usuarios"]
+						}
+					}
+				},
+				{
+					"name": "Listar Todos los Usuarios (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "usuarios"]
+						}
+					}
+				},
+				{
+					"name": "Buscar Usuario por ID (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "usuarios", "1"]
+						}
+					}
+				},
+				{
+					"name": "Editar Usuario (PUT)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Juan Carlos\",\n    \"apellido\": \"Perez Gomez\",\n    \"email\": \"juancarlos@example.com\",\n    \"password\": \"nuevaClave123\",\n    \"telefono\": \"5559876543\",\n    \"rol\": \"ADMIN\",\n    \"fechaRegistro\": \"2026-08-28T10:00:00\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "usuarios", "1"]
+						}
+					}
+				},
+				{
+					"name": "Eliminar Usuario (DELETE)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "usuarios", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Estacionamiento",
+			"item": [
+				{
+					"name": "Crear Estacionamiento (POST)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Estacionamiento Central\",\n    \"direccion\": \"Av. Principal #123\",\n    \"ciudad\": \"Ciudad de Mexico\",\n    \"capacidadTotal\": 50,\n    \"tarifaHora\": 25.50,\n    \"activo\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/estacionamiento",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "estacionamiento"]
+						}
+					}
+				},
+				{
+					"name": "Listar Todos los Estacionamientos (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/estacionamiento",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "estacionamiento"]
+						}
+					}
+				},
+				{
+					"name": "Buscar Estacionamiento por ID (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/estacionamiento/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "estacionamiento", "1"]
+						}
+					}
+				},
+				{
+					"name": "Editar Estacionamiento (PUT)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Estacionamiento Central Express\",\n    \"direccion\": \"Av. Principal #123 - Centro\",\n    \"ciudad\": \"Ciudad de Mexico\",\n    \"capacidadTotal\": 80,\n    \"tarifaHora\": 30.00,\n    \"activo\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/estacionamiento/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "estacionamiento", "1"]
+						}
+					}
+				},
+				{
+					"name": "Eliminar Estacionamiento (DELETE)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/estacionamiento/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "estacionamiento", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Espacios",
+			"item": [
+				{
+					"name": "Crear Espacio (POST)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numero\": \"A-01\",\n    \"tipo\": \"AUTO\",\n    \"disponible\": true,\n    \"estacionamiento\": {\n        \"codeEstacionamiento\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/espacio",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "espacio"]
+						}
+					}
+				},
+				{
+					"name": "Listar Todos los Espacios (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/espacio",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "espacio"]
+						}
+					}
+				},
+				{
+					"name": "Buscar Espacio por ID (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/espacio/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "espacio", "1"]
+						}
+					}
+				},
+				{
+					"name": "Editar Espacio (PUT)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numero\": \"A-01\",\n    \"tipo\": \"CAMIONETA\",\n    \"disponible\": false,\n    \"estacionamiento\": {\n        \"codeEstacionamiento\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/espacio/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "espacio", "1"]
+						}
+					}
+				},
+				{
+					"name": "Eliminar Espacio (DELETE)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/espacio/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "espacio", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Vehiculos",
+			"item": [
+				{
+					"name": "Crear Vehiculo (POST)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"placas\": \"ABC-123\",\n    \"marca\": \"Toyota\",\n    \"modelo\": \"Corolla\",\n    \"color\": \"Rojo\",\n    \"tipo\": \"Sedan\",\n    \"usuario\": {\n        \"codeUsuario\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/vehiculo",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "vehiculo"]
+						}
+					}
+				},
+				{
+					"name": "Listar Todos los Vehiculos (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/vehiculo",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "vehiculo"]
+						}
+					}
+				},
+				{
+					"name": "Buscar Vehiculo por ID (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/vehiculo/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "vehiculo", "1"]
+						}
+					}
+				},
+				{
+					"name": "Editar Vehiculo (PUT)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"placas\": \"ABC-123\",\n    \"marca\": \"Toyota\",\n    \"modelo\": \"Corolla 2024\",\n    \"color\": \"Negro\",\n    \"tipo\": \"Sedan\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/vehiculo/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "vehiculo", "1"]
+						}
+					}
+				},
+				{
+					"name": "Eliminar Vehiculo (DELETE)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/vehiculo/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "vehiculo", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "5. EntradaSalida",
+			"item": [
+				{
+					"name": "Registrar Entrada (POST)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fechaEntrada\": \"2026-08-28T14:00:00\",\n    \"fechaSalida\": null,\n    \"horasConsumidas\": null,\n    \"totalPagar\": null,\n    \"estado\": \"ACTIVO\",\n    \"vehiculo\": {\n        \"codeVehiculo\": 1\n    },\n    \"espacio\": {\n        \"codeEspacio\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/entradaSalida",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "entradaSalida"]
+						}
+					}
+				},
+				{
+					"name": "Listar Entradas y Salidas (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/entradaSalida",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "entradaSalida"]
+						}
+					}
+				},
+				{
+					"name": "Buscar EntradaSalida por ID (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/entradaSalida/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "entradaSalida", "1"]
+						}
+					}
+				},
+				{
+					"name": "Registrar Salida / Actualizar (PUT)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fechaEntrada\": \"2026-08-28T14:00:00\",\n    \"fechaSalida\": \"2026-08-28T16:00:00\",\n    \"horasConsumidas\": 2.0,\n    \"totalPagar\": 51.00,\n    \"estado\": \"PAGADO\",\n    \"vehiculo\": {\n        \"codeVehiculo\": 1\n    },\n    \"espacio\": {\n        \"codeEspacio\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/entradaSalida/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "entradaSalida", "1"]
+						}
+					}
+				},
+				{
+					"name": "Eliminar EntradaSalida (DELETE)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/entradaSalida/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "entradaSalida", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "6. Pagos",
+			"item": [
+				{
+					"name": "Crear Pago (POST)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"monto\": 51.00,\n    \"fechaPago\": \"2026-08-28T16:05:00\",\n    \"metodoPago\": \"EFECTIVO\",\n    \"entradaSalida\": {\n        \"codeEntradaSalida\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pago",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "pago"]
+						}
+					}
+				},
+				{
+					"name": "Listar Todos los Pagos (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pago",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "pago"]
+						}
+					}
+				},
+				{
+					"name": "Buscar Pago por ID (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pago/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "pago", "1"]
+						}
+					}
+				},
+				{
+					"name": "Editar Pago (PUT)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"monto\": 51.00,\n    \"fechaPago\": \"2026-08-28T16:05:00\",\n    \"metodoPago\": \"TARJETA_DEBITO\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pago/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "pago", "1"]
+						}
+					}
+				},
+				{
+					"name": "Eliminar Pago (DELETE)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pago/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "pago", "1"]
+						}
+					}
+				}
+			]
+		}
+	]
+}
