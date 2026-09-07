@@ -50,6 +50,7 @@ public class VehiculoService implements IVehiculoService{
         vehiculoEditar.setMarca(vehiculo.getMarca());
         vehiculoEditar.setModelo(vehiculo.getModelo());
         vehiculoEditar.setTipo(vehiculo.getTipo());
+        vehiculoEditar.setPropietario(vehiculo.getPropietario());
         if (vehiculo.getUsuario() != null) {
             vehiculoEditar.setUsuario(vehiculo.getUsuario());
         }

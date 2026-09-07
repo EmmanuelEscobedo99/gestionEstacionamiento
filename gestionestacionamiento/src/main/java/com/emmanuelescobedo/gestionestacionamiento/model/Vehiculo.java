@@ -16,6 +16,7 @@ public class Vehiculo {
     private String modelo;
     private String color;
     private String tipo;
+    private String propietario;
     private boolean eliminado;
     @ManyToOne
     @JoinColumn(name="usuario_id")
@@ -99,5 +100,13 @@ public class Vehiculo {
 
     public void setEliminado(boolean eliminado) {
         this.eliminado = eliminado;
+    }
+
+    public String getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(String propietario) {
+        this.propietario = propietario;
     }
 }

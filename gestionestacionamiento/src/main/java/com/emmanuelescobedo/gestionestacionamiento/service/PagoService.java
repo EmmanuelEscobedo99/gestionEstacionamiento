@@ -12,6 +12,7 @@ public class PagoService implements IPagoService{
 
     private final IPagoRepository pagoRepo;
 
+
     public PagoService(IPagoRepository pagoRepo) {
         this.pagoRepo = pagoRepo;
     }
@@ -21,6 +22,11 @@ public class PagoService implements IPagoService{
         return pagoRepo.findAll().stream()
                 .filter(p -> !p.isEliminado())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Pago> totalRecaudado() {
+        return List.of();
     }
 
     @Override

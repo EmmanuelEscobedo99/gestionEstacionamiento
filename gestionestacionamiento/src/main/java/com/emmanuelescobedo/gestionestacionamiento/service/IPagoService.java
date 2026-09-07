@@ -10,6 +10,7 @@ public interface IPagoService {
 
     //READ
     List<Pago>traerPago();
+    List<Pago>totalRecaudado();
     Pago buscarPago(Long codePago);
     //CREATE
     Pago crearPago(Pago pago);
