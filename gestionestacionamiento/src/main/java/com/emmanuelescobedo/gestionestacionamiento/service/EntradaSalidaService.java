@@ -7,6 +7,7 @@ import com.emmanuelescobedo.gestionestacionamiento.repository.IEspacioRepository
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EntradaSalidaService implements IEntradaSalidaService{
@@ -48,7 +49,9 @@ public class EntradaSalidaService implements IEntradaSalidaService{
 
     @Override
     public List<EntradaSalida> traerEntradaSalida() {
-        return entrRepo.findAll();
+        return entrRepo.findAll().stream()
+                .filter(e -> !e.isEliminado())
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -99,7 +102,8 @@ public class EntradaSalidaService implements IEntradaSalidaService{
             return false;
         }
 
-        entrRepo.delete(entradaSalida);
+        entradaSalida.setEliminado(true);
+        entrRepo.save(entradaSalida);
         return true;
     }
 }

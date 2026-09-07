@@ -5,6 +5,7 @@ import com.emmanuelescobedo.gestionestacionamiento.repository.IPagoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PagoService implements IPagoService{
@@ -17,7 +18,9 @@ public class PagoService implements IPagoService{
 
     @Override
     public List<Pago> traerPago() {
-        return pagoRepo.findAll();
+        return pagoRepo.findAll().stream()
+                .filter(p -> !p.isEliminado())
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -60,11 +63,8 @@ public class PagoService implements IPagoService{
             return false;
         }
 
-        if (pagoEliminar.getEntradaSalida() != null) {
-            pagoEliminar.getEntradaSalida().setPago(null);
-        }
-
-        pagoRepo.delete(pagoEliminar);
+        pagoEliminar.setEliminado(true);
+        pagoRepo.save(pagoEliminar);
         return true;
     }
 }

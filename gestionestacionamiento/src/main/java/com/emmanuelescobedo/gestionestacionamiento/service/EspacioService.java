@@ -5,6 +5,7 @@ import com.emmanuelescobedo.gestionestacionamiento.repository.IEspacioRepository
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EspacioService implements IEspacioService{
@@ -17,7 +18,9 @@ public class EspacioService implements IEspacioService{
 
     @Override
     public List<Espacio> traerEspacios() {
-        return espaRepo.findAll();
+        return espaRepo.findAll().stream()
+                .filter(e -> !e.isEliminado())
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -63,7 +66,8 @@ public class EspacioService implements IEspacioService{
             return false;
         }
 
-        espaRepo.delete(espacioEliminar);
+        espacioEliminar.setEliminado(true);
+        espaRepo.save(espacioEliminar);
         return true;
     }
 }

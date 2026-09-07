@@ -5,6 +5,7 @@ import com.emmanuelescobedo.gestionestacionamiento.repository.IVehiculoRepositor
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class VehiculoService implements IVehiculoService{
@@ -17,7 +18,9 @@ public class VehiculoService implements IVehiculoService{
 
     @Override
     public List<Vehiculo> traerVehiculos() {
-        return vehiRepo.findAll();
+        return vehiRepo.findAll().stream()
+                .filter(v -> !v.isEliminado())
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -61,7 +64,8 @@ public class VehiculoService implements IVehiculoService{
             return false;
         }
 
-        vehiRepo.delete(vehiculoEliminar);
+        vehiculoEliminar.setEliminado(true);
+        vehiRepo.save(vehiculoEliminar);
         return true;
     }
 }

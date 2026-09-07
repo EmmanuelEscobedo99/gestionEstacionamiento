@@ -5,6 +5,7 @@ import com.emmanuelescobedo.gestionestacionamiento.repository.IEstacionamientoRe
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EstacionamientoService implements IEstacionamientoService{
@@ -17,7 +18,9 @@ public class EstacionamientoService implements IEstacionamientoService{
 
     @Override
     public List<Estacionamiento> traerEstacionamientos() {
-        return estaRepo.findAll();
+        return estaRepo.findAll().stream()
+                .filter(e -> !e.isEliminado())
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -61,7 +64,8 @@ public class EstacionamientoService implements IEstacionamientoService{
             return false;
         }
 
-        estaRepo.delete(estacionamientoEliminar);
+        estacionamientoEliminar.setEliminado(true);
+        estaRepo.save(estacionamientoEliminar);
         return true;
     }
 }

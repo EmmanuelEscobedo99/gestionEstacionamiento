@@ -16,6 +16,7 @@ public class Vehiculo {
     private String modelo;
     private String color;
     private String tipo;
+    private boolean eliminado;
     @ManyToOne
     @JoinColumn(name="usuario_id")
     @JsonIgnoreProperties("vehiculos")
@@ -90,5 +91,13 @@ public class Vehiculo {
 
     public void setPlacas(String placas) {
         this.placas = placas;
+    }
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
     }
 }

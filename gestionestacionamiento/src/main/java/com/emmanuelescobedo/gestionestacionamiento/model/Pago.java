@@ -16,6 +16,7 @@ public class Pago {
     private LocalDateTime fechaPago;
     @Enumerated(EnumType.STRING)
     private MetodoPago metodoPago;
+    private boolean eliminado;
 
     @OneToOne
     @JoinColumn(name = "entrada_salida_id")
@@ -63,5 +64,13 @@ public class Pago {
 
     public void setMonto(BigDecimal monto) {
         this.monto = monto;
+    }
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
     }
 }

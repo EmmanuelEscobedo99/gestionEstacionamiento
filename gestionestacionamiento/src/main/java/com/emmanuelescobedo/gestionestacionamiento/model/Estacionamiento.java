@@ -18,6 +18,7 @@ public class Estacionamiento {
     private Integer capacidadTotal;
     private BigDecimal tarifaHora;
     private boolean activo;
+    private boolean eliminado;
     @OneToMany(mappedBy = "estacionamiento", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("estacionamiento")
     private List<Espacio> espacios;
@@ -87,5 +88,13 @@ public class Estacionamiento {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
     }
 }

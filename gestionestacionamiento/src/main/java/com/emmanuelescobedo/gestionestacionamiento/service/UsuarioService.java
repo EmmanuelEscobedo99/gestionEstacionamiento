@@ -5,6 +5,7 @@ import com.emmanuelescobedo.gestionestacionamiento.repository.IUsuarioRepository
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService implements IUsuarioService{
@@ -17,7 +18,9 @@ public class UsuarioService implements IUsuarioService{
 
     @Override
     public List<Usuario> traerUsuarios() {
-        return usuaRepo.findAll();
+        return usuaRepo.findAll().stream()
+                .filter(u -> !u.isEliminado())
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -64,7 +67,8 @@ public class UsuarioService implements IUsuarioService{
             return false;
         }
 
-        usuaRepo.delete(usuarioEliminar);
+        usuarioEliminar.setEliminado(true);
+        usuaRepo.save(usuarioEliminar);
         return true;
     }
 }

@@ -18,6 +18,7 @@ public class EntradaSalida {
     private BigDecimal totalPagar;
     @Enumerated(EnumType.STRING)
     private EstadoEntrada estado;
+    private boolean eliminado;
 
     @ManyToOne
     @JoinColumn(name = "vehiculo_id")
@@ -106,5 +107,13 @@ public class EntradaSalida {
 
     public void setFechaSalida(LocalDateTime fechaSalida) {
         this.fechaSalida = fechaSalida;
+    }
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
     }
 }

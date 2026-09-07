@@ -15,6 +15,7 @@ public class Espacio {
     @Enumerated(EnumType.STRING)
     private TipoEspacio tipo;
     private boolean disponible;
+    private boolean eliminado;
 
     @ManyToOne
     @JoinColumn(name = "estacionamiento_id")
@@ -74,5 +75,13 @@ public class Espacio {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
     }
 }

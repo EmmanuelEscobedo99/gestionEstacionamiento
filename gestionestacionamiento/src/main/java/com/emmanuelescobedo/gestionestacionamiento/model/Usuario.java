@@ -20,6 +20,7 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private Rol rol;
     private LocalDateTime fechaRegistro;
+    private boolean eliminado;
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("usuario")
     private List<Vehiculo> vehiculos;
@@ -97,5 +98,13 @@ public class Usuario {
 
     public void setCodeUsuario(Long codeUsuario) {
         this.codeUsuario = codeUsuario;
+    }
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
     }
 }
