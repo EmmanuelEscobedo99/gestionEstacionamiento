@@ -1,5 +1,6 @@
 package com.emmanuelescobedo.gestionestacionamiento.service;
 
+import com.emmanuelescobedo.gestionestacionamiento.dto.EstadisticasPagoDTO;
 import com.emmanuelescobedo.gestionestacionamiento.model.Pago;
 import com.emmanuelescobedo.gestionestacionamiento.repository.IPagoRepository;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,21 @@ public class PagoService implements IPagoService{
     }
 
     @Override
-    public List<Pago> totalRecaudado() {
-        return List.of();
+    public EstadisticasPagoDTO obtenerEstadisticas() {
+        List<Object[]> filas = pagoRepo.obtenerEstadisticas();
+
+        if (filas == null || filas.isEmpty()) {
+            return new EstadisticasPagoDTO(0L, 0.0, 0.0, 0.0, 0.0);
+        }
+
+        Object[] r = filas.get(0);
+        return new EstadisticasPagoDTO(
+                ((Number) r[0]).longValue(),
+                ((Number) r[1]).doubleValue(),
+                ((Number) r[2]).doubleValue(),
+                ((Number) r[3]).doubleValue(),
+                ((Number) r[4]).doubleValue()
+        );
     }
 
     @Override

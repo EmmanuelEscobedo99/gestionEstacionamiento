@@ -1,5 +1,6 @@
 package com.emmanuelescobedo.gestionestacionamiento.controller;
 
+import com.emmanuelescobedo.gestionestacionamiento.dto.EstadisticasPagoDTO;
 import com.emmanuelescobedo.gestionestacionamiento.model.Pago;
 import com.emmanuelescobedo.gestionestacionamiento.service.IPagoService;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,10 @@ public class PagoController {
         }
 
         return ResponseEntity.ok(pagoBuscar);
+    }
+    @GetMapping("/estadisticas")
+    public EstadisticasPagoDTO obtenerEstadisticas() {
+        return pagoServ.obtenerEstadisticas();
     }
     //CREATE
     @PostMapping

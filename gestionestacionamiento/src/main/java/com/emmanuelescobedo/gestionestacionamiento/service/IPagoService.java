@@ -1,5 +1,6 @@
 package com.emmanuelescobedo.gestionestacionamiento.service;
 
+import com.emmanuelescobedo.gestionestacionamiento.dto.EstadisticasPagoDTO;
 import com.emmanuelescobedo.gestionestacionamiento.model.Pago;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface IPagoService {
 
     //READ
     List<Pago>traerPago();
-    List<Pago>totalRecaudado();
+    EstadisticasPagoDTO obtenerEstadisticas();
     Pago buscarPago(Long codePago);
     //CREATE
     Pago crearPago(Pago pago);
