@@ -27,18 +27,6 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(List<Vehiculo> vehiculos, LocalDateTime fechaRegistro, Rol rol, String telefono, String password, String email, String apellido, String nombre, Long codeUsuario) {
-        this.vehiculos = vehiculos;
-        this.fechaRegistro = fechaRegistro;
-        this.rol = rol;
-        this.telefono = telefono;
-        this.password = password;
-        this.email = email;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.codeUsuario = codeUsuario;
-    }
-
     public List<Vehiculo> getVehiculos() {
         return vehiculos;
     }

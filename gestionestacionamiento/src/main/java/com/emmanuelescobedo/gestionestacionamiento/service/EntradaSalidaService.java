@@ -34,6 +34,18 @@ public class EntradaSalidaService implements IEntradaSalidaService{
         espaRepo.save(espacio);
     }
 
+    public Espacio CambiarEstadoEspacio(Long codeEspacio, Espacio espacio) {
+        Espacio espacioModificar = espaRepo.findById(codeEspacio).orElse(null);
+
+        if (espacioModificar == null){
+            return null;
+        }
+
+        espacioModificar.setDisponible(false);
+
+        return espaRepo.save(espacioModificar);
+    }
+
     @Override
     public List<EntradaSalida> traerEntradaSalida() {
         return entrRepo.findAll();

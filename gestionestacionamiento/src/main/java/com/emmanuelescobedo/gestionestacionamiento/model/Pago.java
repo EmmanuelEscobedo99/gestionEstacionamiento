@@ -25,14 +25,6 @@ public class Pago {
     public Pago() {
     }
 
-    public Pago(Long codePago, EntradaSalida entradaSalida, MetodoPago metodoPago, LocalDateTime fechaPago, BigDecimal monto) {
-        this.codePago = codePago;
-        this.entradaSalida = entradaSalida;
-        this.metodoPago = metodoPago;
-        this.fechaPago = fechaPago;
-        this.monto = monto;
-    }
-
     public Long getCodePago() {
         return codePago;
     }

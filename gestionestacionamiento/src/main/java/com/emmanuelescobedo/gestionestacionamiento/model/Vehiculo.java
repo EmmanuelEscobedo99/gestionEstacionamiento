@@ -28,17 +28,6 @@ public class Vehiculo {
     public Vehiculo() {
     }
 
-    public Vehiculo(Long codeVehiculo, List<EntradaSalida> entradasSalidas, Usuario usuario, String tipo, String color, String modelo, String marca, String placas) {
-        this.codeVehiculo = codeVehiculo;
-        this.entradasSalidas = entradasSalidas;
-        this.usuario = usuario;
-        this.tipo = tipo;
-        this.color = color;
-        this.modelo = modelo;
-        this.marca = marca;
-        this.placas = placas;
-    }
-
     public Long getCodeVehiculo() {
         return codeVehiculo;
     }
