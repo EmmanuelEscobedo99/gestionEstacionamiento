@@ -60,6 +60,10 @@ public class PagoService implements IPagoService{
             return false;
         }
 
+        if (pagoEliminar.getEntradaSalida() != null) {
+            pagoEliminar.getEntradaSalida().setPago(null);
+        }
+
         pagoRepo.delete(pagoEliminar);
         return true;
     }

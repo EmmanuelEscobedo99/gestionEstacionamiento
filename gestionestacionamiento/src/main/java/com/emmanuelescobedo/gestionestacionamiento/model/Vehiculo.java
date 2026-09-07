@@ -21,7 +21,7 @@ public class Vehiculo {
     @JsonIgnoreProperties("vehiculos")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "vehiculo")
+    @OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("vehiculo")
     private List<EntradaSalida> entradasSalidas;
 

@@ -20,7 +20,7 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private Rol rol;
     private LocalDateTime fechaRegistro;
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("usuario")
     private List<Vehiculo> vehiculos;
 

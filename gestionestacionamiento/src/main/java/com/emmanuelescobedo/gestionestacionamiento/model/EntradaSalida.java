@@ -29,7 +29,7 @@ public class EntradaSalida {
     @JsonIgnoreProperties("entradasSalidas")
     private Espacio espacio;
 
-    @OneToOne(mappedBy = "entradaSalida")
+    @OneToOne(mappedBy = "entradaSalida", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("entradaSalida")
     private Pago pago;
 

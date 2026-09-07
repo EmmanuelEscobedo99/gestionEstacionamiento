@@ -18,7 +18,7 @@ public class Estacionamiento {
     private Integer capacidadTotal;
     private BigDecimal tarifaHora;
     private boolean activo;
-    @OneToMany(mappedBy = "estacionamiento")
+    @OneToMany(mappedBy = "estacionamiento", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("estacionamiento")
     private List<Espacio> espacios;
 

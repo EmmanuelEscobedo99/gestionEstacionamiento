@@ -21,7 +21,7 @@ public class Espacio {
     @JsonIgnoreProperties("espacios")
     private Estacionamiento estacionamiento;
 
-    @OneToMany(mappedBy = "espacio")
+    @OneToMany(mappedBy = "espacio", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("espacio")
     private List<EntradaSalida> entradasSalidas;
 
