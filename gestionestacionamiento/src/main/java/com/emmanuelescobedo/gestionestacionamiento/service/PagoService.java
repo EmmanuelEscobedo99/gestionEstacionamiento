@@ -1,6 +1,9 @@
 package com.emmanuelescobedo.gestionestacionamiento.service;
 
 import com.emmanuelescobedo.gestionestacionamiento.dto.EstadisticasPagoDTO;
+import com.emmanuelescobedo.gestionestacionamiento.dto.RecaudacionDiariaDTO;
+import com.emmanuelescobedo.gestionestacionamiento.dto.RecaudacionMensualDTO;
+import com.emmanuelescobedo.gestionestacionamiento.dto.RecaudacionMetodoDTO;
 import com.emmanuelescobedo.gestionestacionamiento.model.Pago;
 import com.emmanuelescobedo.gestionestacionamiento.repository.IPagoRepository;
 import org.springframework.stereotype.Service;
@@ -41,6 +44,55 @@ public class PagoService implements IPagoService{
                 ((Number) r[3]).doubleValue(),
                 ((Number) r[4]).doubleValue()
         );
+    }
+
+    @Override
+    public List<RecaudacionDiariaDTO> obtenerRecaudacionDiaria() {
+        List<Object[]> filas = pagoRepo.recaudacionPorDia();
+
+        if (filas == null || filas.isEmpty()) {
+            return List.of();
+        }
+
+        return filas.stream()
+                .map(r -> new RecaudacionDiariaDTO(
+                        String.valueOf(r[0]),
+                        ((Number) r[1]).longValue(),
+                        ((Number) r[2]).doubleValue()))
+                .toList();
+    }
+
+    @Override
+    public List<RecaudacionMensualDTO> obtenerRecaudacionMensual() {
+        List<Object[]> filas = pagoRepo.recaudacionPorMes();
+
+        if (filas == null || filas.isEmpty()) {
+            return List.of();
+        }
+
+        return filas.stream()
+                .map(r -> new RecaudacionMensualDTO(
+                        ((Number) r[0]).intValue(),
+                        ((Number) r[1]).intValue(),
+                        ((Number) r[2]).longValue(),
+                        ((Number) r[3]).doubleValue()))
+                .toList();
+    }
+
+    @Override
+    public List<RecaudacionMetodoDTO> obtenerRecaudacionMetodo() {
+        List<Object[]> filas = pagoRepo.recaudacionPorMetodoPago();
+
+        if (filas == null || filas.isEmpty()) {
+            return List.of();
+        }
+
+        return filas.stream()
+                .map(r -> new RecaudacionMetodoDTO(
+                        String.valueOf(r[0]),
+                        ((Number) r[1]).longValue(),
+                        ((Number) r[2]).doubleValue()))
+                .toList();
     }
 
     @Override

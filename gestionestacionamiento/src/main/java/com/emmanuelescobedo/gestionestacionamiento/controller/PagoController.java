@@ -1,6 +1,9 @@
 package com.emmanuelescobedo.gestionestacionamiento.controller;
 
 import com.emmanuelescobedo.gestionestacionamiento.dto.EstadisticasPagoDTO;
+import com.emmanuelescobedo.gestionestacionamiento.dto.RecaudacionDiariaDTO;
+import com.emmanuelescobedo.gestionestacionamiento.dto.RecaudacionMensualDTO;
+import com.emmanuelescobedo.gestionestacionamiento.dto.RecaudacionMetodoDTO;
 import com.emmanuelescobedo.gestionestacionamiento.model.Pago;
 import com.emmanuelescobedo.gestionestacionamiento.service.IPagoService;
 import org.springframework.http.HttpStatus;
@@ -39,6 +42,18 @@ public class PagoController {
     @GetMapping("/estadisticas")
     public EstadisticasPagoDTO obtenerEstadisticas() {
         return pagoServ.obtenerEstadisticas();
+    }
+    @GetMapping("/por-metodo")
+    public List<RecaudacionMetodoDTO> recaudacionPorMetodo() {
+        return pagoServ.obtenerRecaudacionMetodo();
+    }
+    @GetMapping("/por-dia")
+    public List<RecaudacionDiariaDTO> recaudacionPorDia() {
+        return pagoServ.obtenerRecaudacionDiaria();
+    }
+    @GetMapping("/por-mes")
+    public List<RecaudacionMensualDTO> recaudacionPorMes() {
+        return pagoServ.obtenerRecaudacionMensual();
     }
     //CREATE
     @PostMapping
