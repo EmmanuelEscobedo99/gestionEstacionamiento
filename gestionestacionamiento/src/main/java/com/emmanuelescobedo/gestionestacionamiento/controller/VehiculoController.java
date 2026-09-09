@@ -1,27 +1,47 @@
 package com.emmanuelescobedo.gestionestacionamiento.controller;
 
+import com.emmanuelescobedo.gestionestacionamiento.model.Rol;
+import com.emmanuelescobedo.gestionestacionamiento.model.Usuario;
 import com.emmanuelescobedo.gestionestacionamiento.model.Vehiculo;
+import com.emmanuelescobedo.gestionestacionamiento.service.IUsuarioService;
 import com.emmanuelescobedo.gestionestacionamiento.service.IVehiculoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/vehiculo")
 public class VehiculoController {
 
     private final IVehiculoService vehiServ;
+    private final IUsuarioService usuServ;
 
-    public VehiculoController(IVehiculoService vehiServ) {
+    public VehiculoController(IVehiculoService vehiServ, IUsuarioService usuServ) {
         this.vehiServ = vehiServ;
+        this.usuServ = usuServ;
     }
 
     //READ
     @GetMapping
-    public List<Vehiculo> traerVehiculos(){
-        return vehiServ.traerVehiculos();
+    public List<Vehiculo> traerVehiculos(@AuthenticationPrincipal UserDetails user){
+        List<Vehiculo> vehiculos = vehiServ.traerVehiculos();
+
+        if (user != null){
+            Usuario usuario = usuServ.buscarPorEmail(user.getUsername());
+            if (usuario != null && usuario.getRol() == Rol.CLIENTE){
+                return vehiculos.stream()
+                        .filter(v -> v.getUsuario() != null
+                                && v.getUsuario().getCodeUsuario().equals(usuario.getCodeUsuario()))
+                        .collect(Collectors.toList());
+            }
+        }
+
+        return vehiculos;
     }
 
     //READ vehiculo especifico

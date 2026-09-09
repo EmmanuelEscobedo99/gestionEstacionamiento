@@ -2,11 +2,15 @@ package com.emmanuelescobedo.gestionestacionamiento.service;
 
 import com.emmanuelescobedo.gestionestacionamiento.model.EntradaSalida;
 import com.emmanuelescobedo.gestionestacionamiento.model.Espacio;
+import com.emmanuelescobedo.gestionestacionamiento.model.EstadoReserva;
 import com.emmanuelescobedo.gestionestacionamiento.repository.IEntradaSalidaRepository;
 import com.emmanuelescobedo.gestionestacionamiento.repository.IEspacioRepository;
+import com.emmanuelescobedo.gestionestacionamiento.repository.IReservaRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -14,10 +18,16 @@ public class EntradaSalidaService implements IEntradaSalidaService{
 
     private final IEntradaSalidaRepository entrRepo;
     private final IEspacioRepository espaRepo;
+    private final IReservaRepository resaRepo;
 
-    public EntradaSalidaService(IEntradaSalidaRepository entrRepo, IEspacioRepository espaRepo) {
+    public EntradaSalidaService(IEntradaSalidaRepository entrRepo, IEspacioRepository espaRepo, IReservaRepository resaRepo) {
         this.entrRepo = entrRepo;
         this.espaRepo = espaRepo;
+        this.resaRepo = resaRepo;
+    }
+
+    private String generarCodigoQr() {
+        return "ES-" + UUID.randomUUID().toString().replace("-", "").substring(0, 12).toUpperCase();
     }
 
     private void sincronizarEspacio(EntradaSalida entradaSalida) {
@@ -63,6 +73,32 @@ public class EntradaSalidaService implements IEntradaSalidaService{
     public EntradaSalida crearEntradaSalida(EntradaSalida entradaSalida) {
         if (entradaSalida == null) {
             return null;
+        }
+
+        if (entradaSalida.getEspacio() != null && entradaSalida.getEspacio().getCodeEspacio() != null
+                && resaRepo.existsByEspacioCodeEspacioAndEstadoAndFechaVencimientoAfterAndEliminadoFalse(
+                        entradaSalida.getEspacio().getCodeEspacio(), EstadoReserva.ACTIVA, LocalDateTime.now())) {
+            return null;
+        }
+
+        if (entradaSalida.getQrCode() == null || entradaSalida.getQrCode().isEmpty()) {
+            entradaSalida.setQrCode(generarCodigoQr());
+        }
+
+        EntradaSalida guardada = entrRepo.save(entradaSalida);
+        sincronizarEspacio(entradaSalida);
+
+        return guardada;
+    }
+
+    @Override
+    public EntradaSalida crearEntradaSalidaDirecta(EntradaSalida entradaSalida) {
+        if (entradaSalida == null) {
+            return null;
+        }
+
+        if (entradaSalida.getQrCode() == null || entradaSalida.getQrCode().isEmpty()) {
+            entradaSalida.setQrCode(generarCodigoQr());
         }
 
         EntradaSalida guardada = entrRepo.save(entradaSalida);

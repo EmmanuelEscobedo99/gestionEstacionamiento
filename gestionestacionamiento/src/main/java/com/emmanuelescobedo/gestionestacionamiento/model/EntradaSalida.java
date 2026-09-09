@@ -18,6 +18,7 @@ public class EntradaSalida {
     private BigDecimal totalPagar;
     @Enumerated(EnumType.STRING)
     private EstadoEntrada estado;
+    private String qrCode;
     private boolean eliminado;
 
     @ManyToOne
@@ -115,5 +116,13 @@ public class EntradaSalida {
 
     public void setEliminado(boolean eliminado) {
         this.eliminado = eliminado;
+    }
+
+    public String getQrCode() {
+        return qrCode;
+    }
+
+    public void setQrCode(String qrCode) {
+        this.qrCode = qrCode;
     }
 }

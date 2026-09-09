@@ -5,27 +5,50 @@ import com.emmanuelescobedo.gestionestacionamiento.dto.RecaudacionDiariaDTO;
 import com.emmanuelescobedo.gestionestacionamiento.dto.RecaudacionMensualDTO;
 import com.emmanuelescobedo.gestionestacionamiento.dto.RecaudacionMetodoDTO;
 import com.emmanuelescobedo.gestionestacionamiento.model.Pago;
+import com.emmanuelescobedo.gestionestacionamiento.model.Rol;
+import com.emmanuelescobedo.gestionestacionamiento.model.Usuario;
 import com.emmanuelescobedo.gestionestacionamiento.service.IPagoService;
+import com.emmanuelescobedo.gestionestacionamiento.service.IUsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/pago")
 public class PagoController {
 
     private final IPagoService pagoServ;
+    private final IUsuarioService usuServ;
 
-    public PagoController(IPagoService pagoServ) {
+    public PagoController(IPagoService pagoServ, IUsuarioService usuServ) {
         this.pagoServ = pagoServ;
+        this.usuServ = usuServ;
     }
 
     //READ
     @GetMapping
-    public List<Pago>traerPago(){
-        return pagoServ.traerPago();
+    public List<Pago>traerPago(@AuthenticationPrincipal UserDetails user){
+        List<Pago> pagos = pagoServ.traerPago();
+
+        if (user != null){
+            Usuario usuario = usuServ.buscarPorEmail(user.getUsername());
+            if (usuario != null && usuario.getRol() == Rol.CLIENTE){
+                return pagos.stream()
+                        .filter(p -> p.getEntradaSalida() != null
+                                && p.getEntradaSalida().getVehiculo() != null
+                                && p.getEntradaSalida().getVehiculo().getUsuario() != null
+                                && p.getEntradaSalida().getVehiculo().getUsuario().getCodeUsuario()
+                                        .equals(usuario.getCodeUsuario()))
+                        .collect(Collectors.toList());
+            }
+        }
+
+        return pagos;
     }
     //READ pago especifico
     @GetMapping("/{codePago}")

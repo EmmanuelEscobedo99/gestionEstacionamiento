@@ -11,6 +11,7 @@ public interface IUsuarioService {
     //READ
     List<Usuario> traerUsuarios();
     Usuario buscarUsuario(Long codeUsuario);
+    Usuario buscarPorEmail(String email);
 
     //CREATE
     Usuario crearUsuario(Usuario usuario);

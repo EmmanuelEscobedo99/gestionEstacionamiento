@@ -15,6 +15,9 @@ public interface IEntradaSalidaService {
     //CREATE
     EntradaSalida crearEntradaSalida(EntradaSalida entradaSalida);
 
+    //CREATE sin verificar reserva ACTIVA (para ocupar un espacio reservado)
+    EntradaSalida crearEntradaSalidaDirecta(EntradaSalida entradaSalida);
+
     //UPDATE
     EntradaSalida editarEntradaSalida(Long codeEntradaSalida, EntradaSalida entradaSalida);
 

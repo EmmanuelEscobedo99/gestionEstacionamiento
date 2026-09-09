@@ -29,6 +29,11 @@ public class UsuarioService implements IUsuarioService{
     }
 
     @Override
+    public Usuario buscarPorEmail(String email) {
+        return usuaRepo.findByEmail(email).orElse(null);
+    }
+
+    @Override
     public Usuario crearUsuario(Usuario usuario) {
 
         if(usuario == null) {
