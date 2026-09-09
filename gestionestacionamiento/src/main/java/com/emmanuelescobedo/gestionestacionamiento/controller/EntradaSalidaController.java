@@ -99,7 +99,7 @@ public class EntradaSalidaController {
                     .body("No fue posible encontrar la EntradaSalida.");
         }
 
-        if (entradaSalida.getFechaSalida() != null || entradaSalida.getPago() != null){
+        if (entradaSalida.getPago() != null){
             return ResponseEntity.badRequest().body("Esta estancia ya fue cobrada.");
         }
 
@@ -145,7 +145,7 @@ public class EntradaSalidaController {
                     .body("No fue posible encontrar una entrada con ese codigo QR.");
         }
 
-        if (entradaSalida.getFechaSalida() != null || entradaSalida.getPago() != null){
+        if (entradaSalida.getPago() != null){
             return ResponseEntity.badRequest().body("Esta estancia ya fue cobrada.");
         }
 
